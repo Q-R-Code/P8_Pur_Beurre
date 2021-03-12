@@ -1,11 +1,11 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.template import loader
 
 
 def index(request):
-    template = loader.get_template('catalogue/index.html')
-    return HttpResponse(template.render(request=request))
+    return render(request, 'catalogue/index.html')
 
-def catalogue_test(request):
-    message = "Test catalogue"
-    return HttpResponse(message)
+
+def account(request):
+    return render(request, 'catalogue/account.html')

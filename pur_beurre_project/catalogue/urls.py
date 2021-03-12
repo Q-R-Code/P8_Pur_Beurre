@@ -3,6 +3,5 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^', views.catalogue_test)
-
+    url(r'^$', views.account)
 ]
