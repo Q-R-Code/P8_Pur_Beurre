@@ -8,4 +8,4 @@ def index(request):
 
 
 def account(request):
-    return render(request, 'catalogue/account.html')
+    return render(request, 'catalogue/create_account.html')
