@@ -7,7 +7,7 @@ from catalogue import views
 
 urlpatterns = [
     url(r'^$', views.index),
-    url(r'^catalogue/', include('catalogue.urls')),
+    url(r'^catalogue/', include('catalogue.urls', namespace='catalogue')),
     url(r'^admin/', admin.site.urls),
 
 ]
