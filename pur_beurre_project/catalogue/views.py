@@ -5,7 +5,3 @@ from django.contrib.auth.forms import UserCreationForm
 
 def index(request):
     return render(request, 'catalogue/index.html')
-
-
-def account(request):
-    return render(request, 'catalogue/register.html')
