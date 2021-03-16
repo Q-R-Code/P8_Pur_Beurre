@@ -16,4 +16,4 @@ def register(request):
     return render(request, "account/register.html", context)
 
 def login(request):
-    return render(request, 'account/login.html')
+    return render(request, 'registration/login.html')
