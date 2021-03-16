@@ -12,4 +12,8 @@ def register(request):
         return redirect("/")
     else:
         form = RegisterForm()
-    return render(request, "register/register.html", {'form': form})
+        context = {"form": form}
+    return render(request, "account/register.html", context)
+
+def login(request):
+    return render(request, 'account/login.html')
