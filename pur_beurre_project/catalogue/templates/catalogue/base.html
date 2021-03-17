@@ -43,14 +43,19 @@
 
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{% url 'catalogue:my_page' %}"><img width="50"
-                                                                                                        height="50"
+                        <a class="nav-link js-scroll-trigger" href="{% url 'catalogue:my_page' %}"><img width="40"
+                                                                                                        height="40"
                                                                                                         src="{% static 'catalogue/assets/img/account.png' %}"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{% url 'catalogue:my_products' %}"><img width="50"
-                                                                                                        height="50"
+                        <a class="nav-link js-scroll-trigger" href="{% url 'catalogue:my_products' %}"><img width="40"
+                                                                                                        height="40"
                                                                                                         src="{% static 'catalogue/assets/img/carrot.png' %}"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#"><img width="40"
+                                                                                                        height="40"
+                                                                                                        src="{% static 'catalogue/assets/img/disconnection.png' %}"></a>
                     </li>
 
                 {% else %}
