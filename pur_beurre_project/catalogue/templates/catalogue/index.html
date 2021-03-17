@@ -13,7 +13,10 @@
         <div class="col-lg-8 align-self-baseline">
             <p class="text-white-75 font-weight-light mb-5">Trouvez un produit de substitution pour ceux que vous
                 consommez tous les jours.</p>
-            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">BARRE DE RECHERCHE</a>
+            <form class="nav-link" action="#" method="get" accept-charset="utf-8">
+                        <input type="text" name="query" id="query">
+                        <input type="submit" class="btn btn-outline-warning my-2 my-sm-0" value="Chercher">
+                    </form>
         </div>
     </div>
 </div>
@@ -44,6 +47,28 @@
         </div>
     </div>
 </section>
-
+<!-- Contact-->
+<section class="page-section" id="contact">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="mt-0">Contactez-nous!</h2>
+                <hr class="divider my-4"/>
+                <p class="text-muted mb-5">N'hésitez pas à nous contacter par téléphone ou directement par mail !</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+                <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+                <div>03 22 21 20 19</div>
+            </div>
+            <div class="col-lg-4 mr-auto text-center">
+                <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+                <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
+                <a class="d-block" href="mailto:contact@yourwebsite.com">purbeurre@gmail.com</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

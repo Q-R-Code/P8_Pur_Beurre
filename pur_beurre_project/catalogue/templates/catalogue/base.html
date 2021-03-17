@@ -24,7 +24,7 @@
 </head>
 <body id="page-top">
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="/"><img height="50" width="50" alt="logo"
                                                                 src="{% static 'catalogue/assets/img/pur_beurre_ico.png' %}"
@@ -33,35 +33,52 @@
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto my-2 my-lg-0">
+            <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <form class="nav-link" action="#" method="get" accept-charset="utf-8">
                         <input type="text" name="query" id="query">
                         <input type="submit" class="btn btn-outline-warning my-2 my-sm-0" value="Chercher">
                     </form>
                 </li>
-            </ul>
-            <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown"
-                            class="btn btn-outline-secondary dropdown-toggle">
-                                <img height="40" width="40"
-                                    alt="Connexion" src="{% static 'catalogue/assets/img/account.png' %}"
-                                    class="logo-navbar"/><span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-right mt-2">
-                        <li class="px-3 py-2">
-                            <div class="form-group text-center">
-                                <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'account:login' %}">Connection</a>
-                            </div>
-                            <div class="form-group text-center">
-                                <small><p>Pas encore inscrit?</p></small>
-                                <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'account:register' %}">Inscription</a>
-                            </div>
-                            </form>
-                        </li>
-                    </ul>
-                </li>
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="{% url 'catalogue:my_page' %}"><img width="50"
+                                                                                                        height="50"
+                                                                                                        src="{% static 'catalogue/assets/img/account.png' %}"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="{% url 'catalogue:my_products' %}"><img width="50"
+                                                                                                        height="50"
+                                                                                                        src="{% static 'catalogue/assets/img/carrot.png' %}"></a>
+                    </li>
+
+                {% else %}
+                <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+                    <li class="dropdown order-1">
+                        <button type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                class="btn btn-outline-secondary dropdown-toggle">
+                            <img height="40" width="40"
+                                 alt="Connexion" src="{% static 'catalogue/assets/img/account.png' %}"
+                                 class="logo-navbar"/><span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right mt-2">
+                            <li class="px-3 py-2">
+                                <div class="form-group text-center">
+                                    <a class="btn btn-primary btn-xl js-scroll-trigger"
+                                       href="{% url 'account:login' %}">Connection</a>
+                                </div>
+                                <div class="form-group text-center">
+                                    <small><p>Pas encore inscrit?</p></small>
+                                    <a class="btn btn-primary btn-xl js-scroll-trigger"
+                                       href="{% url 'account:register' %}">Inscription</a>
+                                </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -71,33 +88,20 @@
 {% block content %}
 {% endblock %}
 
-<!-- Contact-->
-<section class="page-section" id="contact">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <h2 class="mt-0">Contactez-nous!</h2>
-                <hr class="divider my-4"/>
-                <p class="text-muted mb-5">Blabla de contact .........</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
-                <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-                <div>03 22 21 20 19</div>
-            </div>
-            <div class="col-lg-4 mr-auto text-center">
-                <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
-                <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
-                <a class="d-block" href="mailto:contact@yourwebsite.com">purbeurre@gmail.com</a>
-            </div>
-        </div>
-    </div>
-</section>
+
 <!-- Footer-->
 <footer class="bg-light py-5">
     <div class="container">
-        <div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div>
+        <div class="small text-center">
+            <a href="#" class="pr-5 a-headings">Mentions légales</a>
+            <a href="{% url 'home' %}#contact" class="pl-5 a-headings">Contact</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="small text-center text-muted">QR-Code 2021 - Projet 8 Parcours Python - OpenClassRooms</div>
+    </div>
+    <div class="container">
+
     </div>
 </footer>
 <!-- Bootstrap core JS-->

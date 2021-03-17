@@ -2100,7 +2100,6 @@ textarea.form-control {
 
 .form-group {
   margin-bottom: 1rem;
-  width:30rem;
 }
 
 .form-text {
@@ -2439,13 +2438,13 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #e3a410;
-  border-color: #e3a410;
+  background-color: #f4623a;
+  border-color: #f4623a;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #e3a410;
-  border-color: #e3a410;
+  background-color: #f24516;
+  border-color: #ee3e0d;
 }
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
@@ -2703,25 +2702,25 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-secondary {
-  color: #e3a410;
-  border-color: #e3a410;
+  color: #6c757d;
+  border-color: #6c757d;
 }
 .btn-outline-secondary:hover {
   color: #fff;
-  background-color: #e3a410;
-  border-color: #e3a410;
+  background-color: #6c757d;
+  border-color: #6c757d;
 }
 .btn-outline-secondary:focus, .btn-outline-secondary.focus {
   box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
 }
 .btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
-  color: #e3a410;
+  color: #6c757d;
   background-color: transparent;
 }
 .btn-outline-secondary:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled).active, .show > .btn-outline-secondary.dropdown-toggle {
   color: #fff;
-  background-color: #e3a410;
-  border-color: #e3a410;
+  background-color: #6c757d;
+  border-color: #6c757d;
 }
 .btn-outline-secondary:not(:disabled):not(.disabled):active:focus, .btn-outline-secondary:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-secondary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
@@ -3879,7 +3878,6 @@ input[type=button].btn-block {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  margin-left: 30rem;
 }
 .nav-link:hover, .nav-link:focus {
   text-decoration: none;
@@ -3911,7 +3909,7 @@ input[type=button].btn-block {
 }
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #f5a11b;
+  color: #495057;
   background-color: #fff;
   border-color: #dee2e6 #dee2e6 #fff;
 }
@@ -10144,12 +10142,4 @@ header.masthead h1 {
 
 .text-white-75 {
   color: rgba(255, 255, 255, 0.75);
-}
-
-button:focus {
-    outline: 0;
-}
-
-.navbar .dropdown-menu .form-control {
-    width: 300px;
 }

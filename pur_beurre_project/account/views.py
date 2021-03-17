@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .forms import RegisterForm
 
 
@@ -8,11 +9,10 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-
-        return redirect("/")
+            return redirect("/")
     else:
         form = RegisterForm()
-        context = {"form": form}
+    context = {"form": form}
     return render(request, "account/register.html", context)
 
 def login(request):

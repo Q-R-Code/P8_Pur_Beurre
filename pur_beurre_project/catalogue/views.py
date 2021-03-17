@@ -5,3 +5,11 @@ from django.contrib.auth.forms import UserCreationForm
 
 def index(request):
     return render(request, 'catalogue/index.html')
+
+
+def my_page(request):
+    return render(request, 'catalogue/my_page.html')
+
+
+def my_products(request):
+    return render(request, 'catalogue/my_products.html')
