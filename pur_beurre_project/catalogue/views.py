@@ -7,6 +7,9 @@ from django.contrib.auth.forms import UserCreationForm
 def index(request):
     return render(request, 'catalogue/index.html')
 
+def legal_notice(request):
+    return render(request, 'catalogue/legal-notice.html')
+
 @login_required
 def my_page(request):
     return render(request, 'catalogue/my_page.html')
