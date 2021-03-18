@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'account.apps.AccountConfig',
     'catalogue.apps.CatalogueConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'crispy_forms',
-    'account.apps.AccountConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -125,7 +126,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CRISPY_TEMPLATE_PACK="bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"

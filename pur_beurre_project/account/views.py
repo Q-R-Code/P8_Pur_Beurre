@@ -9,11 +9,10 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect('/compte/connection/login')
     else:
         form = RegisterForm()
     context = {"form": form}
     return render(request, "account/register.html", context)
 
-def login(request):
-    return render(request, 'registration/login.html')
+
