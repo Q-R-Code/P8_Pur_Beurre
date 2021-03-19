@@ -15,3 +15,4 @@ class Sub_saved(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
+#https://fr.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=unique_scans_n&&page_size=100&json=true
