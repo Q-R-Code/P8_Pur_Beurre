@@ -7,5 +7,6 @@ app_name = 'catalogue'
 urlpatterns = [
     url(r'^mon-compte/', views.my_page, name='my_page'),
     url(r'^mes-produits/', views.my_products, name='my_products'),
-    url(r'mentions-legales/', views.legal_notice, name='legal-notice')
+    url(r'mentions-legales/', views.legal_notice, name='legal-notice'),
+    url(r'^search/$', views.search, name='search'),
 ]

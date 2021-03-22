@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <form class="nav-link" action="#" method="get" accept-charset="utf-8">
+                    <form class="nav-link" action="{% url 'catalogue:search' %}" method="get" accept-charset="utf-8">
                         <input type="text" name="query" id="query">
                         <input type="submit" class="btn btn-outline-warning my-2 my-sm-0" value="Chercher">
                     </form>
