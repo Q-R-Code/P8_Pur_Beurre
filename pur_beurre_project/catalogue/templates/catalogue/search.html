@@ -4,10 +4,10 @@
 {% block content %}
 {% load static %}
 {% if no_product %}
-
+<header class="masthead ">
 <div class="container my-5">
     <div class="row h-100 align-items-center justify-content-center text-center">
-        <h1 class="text-uppercase text-white font-weight-bold my-5">Nous n'avons trouvé aucun résultat!</h1>
+        <h2 class="text-uppercase text-white font-weight-bold my-5">Nous n'avons pas trouvé de résultats pour votre recherche... </h2>
         <hr class="divider my-4"/>
         <div class="container my-5">
             <div class="row justify-content-center">
@@ -24,7 +24,7 @@
         </div>
     </div>
 </div>
-
+</header>
 
 {% else %}
 <header class="masthead-search h-50">
