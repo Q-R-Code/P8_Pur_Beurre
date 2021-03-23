@@ -14,9 +14,14 @@ def search(request):
         return redirect('/')
     else:
         products = Product.objects.filter(name__icontains=query)
-        context = {
-            "products": products
-        }
+        if not products.exists():
+            context = {
+                "no_product": True
+            }
+        else:
+            context = {
+                "products": products
+            }
         return render(request, 'catalogue/search.html', context)
 
 
