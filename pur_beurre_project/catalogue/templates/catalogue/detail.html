@@ -15,6 +15,30 @@
     <hr class="divider "/>
 </div>
 <div class="container">
+    <div class="row mt-5">
+{% for substitute in substitutes %}
+        <div class="col-md-4 my-5">
+            <div class="card border-primary">
+                <div class="nutriscore nutriscore-{{ substitute.get('nutriscore_grade') }} text-center">
+                    {{ substitute.get('nutriscore_grade')|upper }}
+                </div>
+                <a class="mx-auto" title="Voir la fiche de ce produit"
+                   href="#">
+                    <img src="{{ substitute.get('image_url') }}" class="image_url img-fluid mt-3 mx-auto"
+                         alt="">
+                </a>
+                <div id="card" class="card-body">
+                    <h5 class="card-title short text-center" title="{{ substitute.get('product_name') }}">{{ substitute.get('product_name') }}</h5>
+                    <a href="#"
+                       class="btn btn-primary d-block w-75 mx-auto">
+                        Sauvegarder ce substitut
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 
 
