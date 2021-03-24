@@ -1,0 +1,22 @@
+{% extends 'catalogue/base.html' %}
+{% load static %}
+{% block content %}
+<header class="masthead-search h-50">
+<section class="h-100 py-2" style="background-image: url({{ product.image_url }})">
+        <div class="container">
+            <div class="row justify-content-center text-light">
+                <h2 class="bg-secondary p-2 text-center rounded mt-5">{{ product.name }}</h2>
+            </div>
+        </div>
+</section>
+</header>
+<div class="container">
+    <h3 class="text-uppercase  text-center font-weight-bold my-5">Voici des substituts pour ce produit:</h3>
+    <hr class="divider "/>
+</div>
+<div class="container">
+
+
+
+</div>
+{% endblock %}

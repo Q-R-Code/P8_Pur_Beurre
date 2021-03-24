@@ -1,35 +1,37 @@
 {% extends 'catalogue/base.html' %}
-{% load static %}
+{%
 
 {% block content %}
 {% load static %}
 {% if no_product %}
 <header class="masthead ">
-<div class="container my-5">
-    <div class="row h-100 align-items-center justify-content-center text-center">
-        <h2 class="text-uppercase text-white font-weight-bold my-5">Nous n'avons pas trouvé de résultats pour votre recherche... </h2>
-        <hr class="divider my-4"/>
-        <div class="container my-5">
-            <div class="row justify-content-center">
-                <form class="input-group" action="{% url 'catalogue:search' %}" method="get" accept-charset="utf-8">
-                    <input class="form-control" type="text" name="query" id="query">
-                    <input type="submit" class="btn btn-outline-warning my-2 my-sm-0" value="Chercher">
-                </form>
-            </div>
+    <div class="container my-5">
+        <div class="row h-100 align-items-center justify-content-center text-center">
+            <h2 class="text-uppercase text-white font-weight-bold my-5">Nous n'avons pas trouvé de résultats pour votre
+                recherche... </h2>
             <hr class="divider my-4"/>
-            <div class="row justify-content-center">
-                <img width="200" height="270" alt="Carrot_sad"
-                     src="{% static 'catalogue/assets/img/carrot_sad.png' %}">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <form class="input-group" action="{% url 'catalogue:search' %}" method="get" accept-charset="utf-8">
+                        <input class="form-control" type="text" name="query" id="query">
+                        <input type="submit" class="btn btn-outline-warning my-2 my-sm-0" value="Chercher">
+                    </form>
+                </div>
+                <hr class="divider my-4"/>
+                <div class="row justify-content-center">
+                    <img width="200" height="270" alt="Carrot_sad"
+                         src="{% static 'catalogue/assets/img/carrot_sad.png' %}">
+                </div>
             </div>
         </div>
     </div>
-</div>
 </header>
 
 {% else %}
 <header class="masthead-search h-50">
     <div class="container">
-        <h3 class="text-uppercase  text-center text-white font-weight-bold my-5">Voici les produits que nous avons trouvé:</h3>
+        <h3 class="text-uppercase  text-center text-white font-weight-bold my-5">Voici les produits que nous avons
+            trouvé:</h3>
         <hr class="divider "/>
     </div>
 </header>
@@ -48,7 +50,7 @@
                 </a>
                 <div id="card" class="card-body">
                     <h5 class="card-title short text-center" title="{{ product.name }}">{{ product.name }}</h5>
-                    <a href="#"
+                    <a href="{% url 'catalogue:detail' product_id=product.id %}"
                        class="btn btn-primary d-block w-75 mx-auto">
                         Rechercher un substitut
                     </a>

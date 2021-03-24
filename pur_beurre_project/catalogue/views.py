@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Product
 
@@ -24,6 +24,13 @@ def search(request):
             }
         return render(request, 'catalogue/search.html', context)
 
+
+def detail(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    context = {
+        "product": product
+    }
+    return render(request, 'catalogue/detail.html', context)
 
 def legal_notice(request):
     return render(request, 'catalogue/legal-notice.html')
