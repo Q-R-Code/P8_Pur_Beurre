@@ -18,21 +18,25 @@
     <div class="row mt-5">
 {% for substitute in substitutes %}
         <div class="col-md-4 my-5">
-            <div class="card border-primary">
-                <div class="nutriscore nutriscore-{{ substitute.get('nutriscore_grade') }} text-center">
-                    {{ substitute.get('nutriscore_grade')|upper }}
+            <div class="card border-primary" style="background-color: #ffedd4">
+                <div class="nutriscore nutriscore-{{ substitute.nutriscore_grade }} text-center">
+                    {{ substitute.nutriscore_grade|upper }}
                 </div>
                 <a class="mx-auto" title="Voir la fiche de ce produit"
-                   href="#">
-                    <img src="{{ substitute.get('image_url') }}" class="image_url img-fluid mt-3 mx-auto"
+                   href="{{ substitute.url }}">
+                    <img src="{{ substitute.image_url }}" class="image_url img-fluid mt-3 mx-auto"
                          alt="">
                 </a>
+                <img src="{{ substitute.image_nutriments }}" class="image_url img-fluid mt-3 mx-auto"
+                         alt="">
                 <div id="card" class="card-body">
-                    <h5 class="card-title short text-center" title="{{ substitute.get('product_name') }}">{{ substitute.get('product_name') }}</h5>
+                    <h5 class="card-title short text-center" title="{{ substitute.name }}">{{ substitute.name }}</h5>
+                    {% if user.is_authenticated %}
                     <a href="#"
                        class="btn btn-primary d-block w-75 mx-auto">
                         Sauvegarder ce substitut
                     </a>
+                    {% endif %}
                 </div>
             </div>
         </div>

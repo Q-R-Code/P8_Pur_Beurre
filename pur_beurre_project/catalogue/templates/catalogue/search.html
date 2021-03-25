@@ -39,17 +39,18 @@
     <div class="row mt-5">
         {% for product in products %}
         <div class="col-md-4 my-5">
-            <div class="card border-primary">
+            <div class="card border-primary" style="background-color: #ffedd4">
                 <div class="nutriscore nutriscore-{{ product.nutriscore_grade }} text-center">
                     {{ product.nutriscore_grade|upper }}
                 </div>
                 <a class="mx-auto" title="Voir la fiche de ce produit"
-                   href="#">
+                   href="{{ product.url }}">
                     <img src="{{ product.image_url }}" class="image_url img-fluid mt-3 mx-auto"
                          alt="">
                 </a>
                 <div id="card" class="card-body">
                     <h5 class="card-title short text-center" title="{{ product.name }}">{{ product.name }}</h5>
+                    <small><p class="short text-center"><a href="{{ product.url }}">Voir le produit sur Openfoodfacts</a></p></small>
                     <a href="{% url 'catalogue:detail' product_id=product.id %}"
                        class="btn btn-primary d-block w-75 mx-auto">
                         Rechercher un substitut
