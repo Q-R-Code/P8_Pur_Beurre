@@ -9775,6 +9775,9 @@ button.bg-dark:focus {
   color: #fff !important;
 }
 
+.text-title {
+  color: #ffc107 !important;
+}
 .text-primary {
   color: #f4623a !important;
 }

@@ -13,7 +13,6 @@ def index(request):
 
 def search(request):
     query = request.GET.get('query')
-    bugtest
     if not query:
         return redirect('/')
     else:
@@ -32,13 +31,22 @@ def search(request):
 def detail(request, product_id):
     product = Product.objects.get(id=product_id)
     cat = product.categories
+    cat = ast.literal_eval(cat)
+    if len(cat) <= 4:
+        pass
+    else:
+        cat = cat[:4]
     order = Product.objects.filter(categories__icontains=cat)
     sub = order.order_by('nutriscore_grade', 'id')
     substitutes = []
     for x in sub:
         if x.nutriscore_grade <= product.nutriscore_grade:
             substitutes.append(x)
-    substitutes.remove(product)
+
+    for x in substitutes:
+        if x.name == product.name:
+            substitutes.remove(x)
+
     context = {
         "product": product,
         "order": order,
