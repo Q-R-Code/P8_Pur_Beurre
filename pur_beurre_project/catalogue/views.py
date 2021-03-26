@@ -13,6 +13,7 @@ def index(request):
 
 def search(request):
     query = request.GET.get('query')
+    bugtest
     if not query:
         return redirect('/')
     else:

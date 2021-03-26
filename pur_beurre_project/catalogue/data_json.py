@@ -1,6 +1,4 @@
-import requests
 
-from models import Product
 
 url = "https://fr.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=unique_scans_n&?sort_by=popularity&page_size=100&json=true"
 req = requests.get(url)
