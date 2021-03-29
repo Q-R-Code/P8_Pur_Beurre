@@ -16,7 +16,7 @@
 </div>
 <div class="container">
     <div class="row mt-5">
-{% for substitute in substitutes %}
+{% for substitute in page %}
         <div class="col-md-4 my-5">
             <div class="card border-primary" style="background-color: #ffedd4">
                 <div class="nutriscore nutriscore-{{ substitute.nutriscore_grade }} text-center">
@@ -32,7 +32,7 @@
                 <div id="card" class="card-body">
                     <h5 class="card-title short text-center" title="{{ substitute.name }}">{{ substitute.name }}</h5>
                     {% if user.is_authenticated %}
-                    <a href="#"
+                    <a href="{% url 'catalogue:save' product_id=substitute.pk %}}"
                        class="btn btn-primary d-block w-75 mx-auto">
                         Sauvegarder ce substitut
                     </a>
@@ -41,6 +41,23 @@
             </div>
         </div>
         {% endfor %}
+        <div class="container pagination justify-content-center mb-5">
+                <span class="step-links">
+                    {% if page.has_previous %}
+                        <a href="?query={{ query }}&page=1">&laquo; Début</a>
+                        <a href="?query={{ query }}&page={{ page.previous_page_number }}">Page précédente</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ page.number }} sur {{ page.paginator.num_pages }}
+                    </span>
+
+                    {% if page.has_next %}
+                        <a href="?query={{ query }}&page={{ page.next_page_number }}">Page suivante</a>
+                        <a href="?query={{ query }}&page={{ page.paginator.num_pages }}">Fin &raquo;</a>
+                    {% endif %}
+                </span>
+        </div>
     </div>
 </div>
 

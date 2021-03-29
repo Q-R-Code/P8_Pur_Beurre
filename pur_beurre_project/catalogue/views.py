@@ -1,20 +1,37 @@
 import ast
 
 import requests
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import Product
+from .models import Product, Sub_saved
 
 
 def index(request):
     return render(request, 'catalogue/index.html')
 
 
+def pagination(request, args, prods_max):
+    paginator = Paginator(args, prods_max)
+    page_number = request.GET.get('page', 1)
+
+    try:
+        page = paginator.page(page_number)
+    except PageNotAnInteger:
+        page = paginator.page(1)
+    except EmptyPage:
+        page = paginator.page(paginator.num_pages)
+
+    return page
+
+
 def search(request):
     query = request.GET.get('query')
     if not query:
-        return redirect('/')
+        messages.success(request, "Vous n'avez rien saisi")
+        return redirect('home')
     else:
         products = Product.objects.filter(name__icontains=query)
         if not products.exists():
@@ -23,36 +40,50 @@ def search(request):
             }
         else:
             context = {
-                "products": products
+                "query": query,
+                "page": pagination(request, products, 6)
             }
         return render(request, 'catalogue/search.html', context)
 
 
 def detail(request, product_id):
     product = Product.objects.get(id=product_id)
-    cat = product.categories
-    cat = ast.literal_eval(cat)
-    if len(cat) <= 4:
-        pass
-    else:
-        cat = cat[:4]
-    order = Product.objects.filter(categories__icontains=cat)
+    categories = product.categories
+    categories = ast.literal_eval(categories)
+    order = Product.objects.filter(categories__icontains=categories)
     sub = order.order_by('nutriscore_grade', 'id')
     substitutes = []
     for x in sub:
-        if x.nutriscore_grade <= product.nutriscore_grade:
-            substitutes.append(x)
-
-    for x in substitutes:
-        if x.name == product.name:
-            substitutes.remove(x)
-
+        try:
+            if x.name == product.name:
+                substitutes.remove(x)
+            if x.nutriscore_grade <= product.nutriscore_grade:
+                substitutes.append(x)
+        except:
+            pass
     context = {
         "product": product,
-        "order": order,
-        "substitutes": substitutes,
+        "query": product,
+        "page": pagination(request, substitutes, 6),
     }
     return render(request, 'catalogue/detail.html', context)
+
+
+@login_required
+def save_in_db(request, product_id):
+    user = request.user
+    try:
+        save = Sub_saved.objects.filter(user=user.id,
+                                        sub=product_id)
+        if not save:
+            Sub_saved.objects.create(user=user.id,
+                                     sub=product_id)
+            messages.success(request, 'Produit sauvegardé')
+        else:
+            messages.success(request, 'Le produit est déjà sauvegardé')
+
+    finally:
+        return redirect('home')
 
 
 def legal_notice(request):
