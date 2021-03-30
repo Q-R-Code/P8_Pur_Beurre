@@ -32,10 +32,11 @@
                 <div id="card" class="card-body">
                     <h5 class="card-title short text-center" title="{{ substitute.name }}">{{ substitute.name }}</h5>
                     {% if user.is_authenticated %}
-                    <a href="{% url 'catalogue:save' product_id=substitute.pk %}}"
-                       class="btn btn-primary d-block w-75 mx-auto">
-                        Sauvegarder ce substitut
-                    </a>
+                    <form class="input-group justify-content-center" action="{% url 'catalogue:save' %}" method="POST" accept-charset="utf-8">
+                        {% csrf_token %}
+                        <input class="form-control" type="text" style="display: none;" name="substitutes" value="{{ substitute }}">
+                        <input type="submit" class="btn btn-outline-warning my-2 my-sm-0 " value="Sauvegarder ce substitut">
+                    </form>
                     {% endif %}
                 </div>
             </div>

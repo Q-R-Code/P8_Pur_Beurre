@@ -1,6 +1,5 @@
 import ast
 
-import requests
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -70,19 +69,24 @@ def detail(request, product_id):
 
 
 @login_required
-def save_in_db(request, product_id):
-    user = request.user
-    try:
-        save = Sub_saved.objects.filter(user=user.id,
-                                        sub=product_id)
-        if not save:
-            Sub_saved.objects.create(user=user.id,
-                                     sub=product_id)
-            messages.success(request, 'Produit sauvegardé')
-        else:
-            messages.success(request, 'Le produit est déjà sauvegardé')
+def save_in_db(request):
+    if request.method == "POST":
+        sub = request.POST.get('substitute')
+        user = request.user
+        try:
+            save = Sub_saved.objects.filter(user=user.id,
+                                            sub=sub.id)
+            if not save:
+                substitute = Sub_saved.objects.create(user=user.id,
+                                         sub=sub.id)
+                substitute.save()
+                messages.success(request, 'Produit sauvegardé')
+            else:
+                messages.success(request, 'Le produit est déjà sauvegardé')
 
-    finally:
+        finally:
+            return redirect('catalogue:my_page')
+    else:
         return redirect('home')
 
 
