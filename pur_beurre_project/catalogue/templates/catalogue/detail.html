@@ -34,7 +34,7 @@
                     {% if user.is_authenticated %}
                     <form class="input-group justify-content-center" action="{% url 'catalogue:save' %}" method="POST" accept-charset="utf-8">
                         {% csrf_token %}
-                        <input class="form-control" type="text" style="display: none;" name="substitutes" value="{{ substitute }}">
+                        <input class="form-control" type="text" style="display: none;" name="substitutes" value="{{ substitute.id }}">
                         <input type="submit" class="btn btn-outline-warning my-2 my-sm-0 " value="Sauvegarder ce substitut">
                     </form>
                     {% endif %}
@@ -60,9 +60,5 @@
                 </span>
         </div>
     </div>
-</div>
-
-
-
 </div>
 {% endblock %}

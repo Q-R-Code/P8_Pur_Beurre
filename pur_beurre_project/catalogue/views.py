@@ -3,6 +3,7 @@ import ast
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Product, Sub_saved
@@ -71,21 +72,19 @@ def detail(request, product_id):
 @login_required
 def save_in_db(request):
     if request.method == "POST":
-        sub = request.POST.get('substitute')
+        sub = request.POST.get('substitutes')
         user = request.user
-        try:
-            save = Sub_saved.objects.filter(user=user.id,
-                                            sub=sub.id)
-            if not save:
-                substitute = Sub_saved.objects.create(user=user.id,
-                                         sub=sub.id)
-                substitute.save()
-                messages.success(request, 'Produit sauvegardé')
-            else:
-                messages.success(request, 'Le produit est déjà sauvegardé')
+        save = Sub_saved.objects.filter(user_id=user.id,
+                                            sub_id=sub)
+        if not save:
+            Sub_saved.objects.create(user_id=user.id,
+                                         sub_id=sub)
+            messages.success(request, 'Produit sauvegardé')
+            return redirect('home')
+        else:
+            messages.success(request, 'Le produit est déjà sauvegardé')
+            return redirect(request.path_info)
 
-        finally:
-            return redirect('catalogue:my_page')
     else:
         return redirect('home')
 
@@ -101,4 +100,13 @@ def my_page(request):
 
 @login_required
 def my_products(request):
-    return render(request, 'catalogue/my_products.html')
+    user = request.user
+    sub_save = Sub_saved.objects.filter(user_id=user.id)
+    substitutes = []
+    for sub in sub_save:
+        prod = Product.objects.get(pk=sub.sub_id)
+        substitutes.append(prod)
+    context = {
+        "page": pagination(request, substitutes, 6)
+    }
+    return render(request, 'catalogue/my_products.html', context )
