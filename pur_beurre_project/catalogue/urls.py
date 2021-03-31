@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^search/$', views.search, name='search'),
     url(r'^(?P<product_id>[0-9]+)/$', views.detail, name='detail'),
     url(r'save/<int:sub.id>', views.save_in_db, name='save'),
+    url(r'supprimer/$', views.delete_sub, name="delete"),
 ]

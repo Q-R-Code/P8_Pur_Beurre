@@ -32,6 +32,13 @@ def search(request):
     if not query:
         messages.success(request, "Vous n'avez rien saisi")
         return redirect('home')
+    elif query == "all":
+        products = Product.objects.all()
+        context = {
+            "query": query,
+            "page": pagination(request, products, 6)
+        }
+        return render(request, 'catalogue/search.html', context)
     else:
         products = Product.objects.filter(name__icontains=query)
         if not products.exists():
@@ -88,6 +95,25 @@ def save_in_db(request):
     else:
         return redirect('home')
 
+@login_required
+def delete_sub(request):
+    if request.method == "POST":
+        user = request.user
+        sub = request.POST.get('substitutes')
+        delete = Sub_saved.objects.filter(user_id=user.id,
+                                            sub_id=sub)
+        delete.delete()
+        sub_save = Sub_saved.objects.filter(user_id=user.id)
+        substitutes = []
+        for sub in sub_save:
+            prod = Product.objects.get(pk=sub.sub_id)
+            substitutes.append(prod)
+        context = {
+            "page": pagination(request, substitutes, 6)
+        }
+        return render(request, 'catalogue/my_products.html', context)
+    else:
+        return redirect('home')
 
 def legal_notice(request):
     return render(request, 'catalogue/legal-notice.html')

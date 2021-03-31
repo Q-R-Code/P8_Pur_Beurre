@@ -10,6 +10,12 @@
         </div>
 </section>
 </header>
+{% if page|length == 0 %}
+<div class="container">
+    <h3 class="text-uppercase  text-center font-weight-bold my-5">Il n'y a pas de substitut pour ce produit actuellement ...</h3>
+    <hr class="divider "/>
+</div>
+{% else %}
 <div class="container">
     <h3 class="text-uppercase  text-center font-weight-bold my-5">Voici des substituts pour ce produit:</h3>
     <hr class="divider "/>
@@ -61,4 +67,5 @@
         </div>
     </div>
 </div>
+{% endif %}
 {% endblock %}

@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Product(models.Model):
 
+class Product(models.Model):
     name = models.CharField(max_length=200)
     image_url = models.URLField(null=True)
     categories = models.CharField(max_length=500)
@@ -11,7 +11,14 @@ class Product(models.Model):
     barcode = models.CharField(max_length=30)
     url = models.URLField(null=True)
 
-class Sub_saved(models.Model):
+    class Meta:
+        verbose_name = "Product"
+        ordering = ['nutriscore_grade']
 
+
+class Sub_saved(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     sub = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Sub_saved"
