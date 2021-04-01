@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import *
+from pur_beurre_project.catalogue.models import *
 
 
 

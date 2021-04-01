@@ -13,6 +13,7 @@ class Command(BaseCommand):
         req = requests.get(url)
         data = req.json()
         prod = data["products"]
+        number_prod = 0
         for x in prod:
             try:
                 name = x["product_name"]
@@ -30,24 +31,10 @@ class Command(BaseCommand):
                                 image_nutriments=image_nutrition, barcode=barcode, url=url)
                 if not Product.objects.filter(name=product.name):
                     product.save()
+                    number_prod += 1
+                    if number_prod %10 == 0:
+                        self.stdout.write(f'Loading: "{number_prod}" products are saved!')
+
             except:
-                pass
-        self.stdout.write('Fill_db : OK!')
-
-
-"""
-        for x in range(200):
-            name = data["products"][x].get("product_name_fr")
-            image_url = data["products"][x].get("image_url")
-            categories_tag = data["products"][x].get("categories_hierarchy")
-            categories = []
-            for cat in categories_tag:
-                categories.append(cat[3:])
-            nutriscore_grade = data["products"][x].get("nutriscore_grade")
-            image_nutrition = data["products"][x].get("image_nutrition_url")
-            barcode = data["products"][x].get("code")
-            url = data["products"][x].get("url")
-            product = Product(name=name, categories=categories, image_url=image_url, nutriscore_grade=nutriscore_grade,
-                              image_nutriments=image_nutrition, barcode=barcode, url=url)
-            product.save()      
- """
+                self.stdout.write(f'Exception : {name} not saved ...')
+        self.stdout.write(f'Fill_db : {number_prod} products are saved!')

@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+
     'catalogue.apps.CatalogueConfig',
     'account.apps.AccountConfig',
     'django.contrib.admin',
@@ -41,7 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 
 ]
-
+print(INSTALLED_APPS)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
