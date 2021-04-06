@@ -3,8 +3,7 @@ import ast
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 
 from .models import Product, Sub_saved
 
@@ -70,7 +69,6 @@ def detail(request, product_id):
             pass
     context = {
         "product": product,
-        "query": product,
         "page": pagination(request, substitutes, 6),
     }
     return render(request, 'catalogue/detail.html', context)
@@ -82,10 +80,10 @@ def save_in_db(request):
         sub = request.POST.get('substitutes')
         user = request.user
         save = Sub_saved.objects.filter(user_id=user.id,
-                                            sub_id=sub)
+                                        sub_id=sub)
         if not save:
             Sub_saved.objects.create(user_id=user.id,
-                                         sub_id=sub)
+                                     sub_id=sub)
             messages.success(request, 'Produit sauvegardé')
             return redirect('home')
         else:
@@ -95,13 +93,14 @@ def save_in_db(request):
     else:
         return redirect('home')
 
+
 @login_required
 def delete_sub(request):
     if request.method == "POST":
         user = request.user
         sub = request.POST.get('substitutes')
         delete = Sub_saved.objects.filter(user_id=user.id,
-                                            sub_id=sub)
+                                          sub_id=sub)
         delete.delete()
         sub_save = Sub_saved.objects.filter(user_id=user.id)
         substitutes = []
@@ -114,6 +113,7 @@ def delete_sub(request):
         return render(request, 'catalogue/my_products.html', context)
     else:
         return redirect('home')
+
 
 def legal_notice(request):
     return render(request, 'catalogue/legal-notice.html')
@@ -135,4 +135,4 @@ def my_products(request):
     context = {
         "page": pagination(request, substitutes, 6)
     }
-    return render(request, 'catalogue/my_products.html', context )
+    return render(request, 'catalogue/my_products.html', context)

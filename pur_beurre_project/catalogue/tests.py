@@ -1,39 +1,65 @@
-from django.contrib.auth.models import User
+from django.shortcuts import redirect
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import *
+from .models import Product
 
 
+class TestViews(TestCase):
+    """Test some views"""
 
-class PagesTestCase(TestCase):
-    def test_index_page(self):
+    def test_index_view(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'catalogue/index.html')
 
-    def legal_notice_page(self):
+    def test_legal_view(self):
         response = self.client.get(reverse('catalogue:legal-notice'))
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'catalogue/legal-notice.html')
 
 
-class ProductsTestCase(TestCase):
+class TestProducts(TestCase):
 
     def setUp(self):
-        User.objects.create(username="user", password="123456")
         Product.objects.create(
             name="Produit1",
             image_url="https://produit1-image-url.fr",
-            categories=["Boissons", "Eaux", "breakfasts"],
+            categories="[Boissons, Eaux, breakfasts]",
             nutriscore_grade="b",
             image_nutriments="https://produit1-nutriments.fr",
-            barcode="3274080005003",
+            barcode="3274080011111",
             url="https://produit1-url.fr"
-        )
+        ).save()
+        Product.objects.create(
+            name="Produit2",
+            image_url="https://produit2-image-url.fr",
+            categories="[Boissons, Eaux, breakfasts]",
+            nutriscore_grade="b",
+            image_nutriments="https://produit2-nutriments.fr",
+            barcode="3274080022222",
+            url="https://produit2-url.fr"
+        ).save()
+        self.product1 = Product.objects.get(name="Produit1")
+        self.product2 = Product.objects.get(name="Produit2")
 
+    def test_search_view_none(self):
+        response = self.client.get(reverse('catalogue:search'))
+        self.assertEquals(response.status_code, 302, "Vous n'avez rien saisi")
+        self.assertTemplateUsed(redirect('index.html'))
 
-    def test_search_page(self):
-        query = "Produit1"
-        response = self.client.get(reverse('catalogue:search'), {'query': query})
-        print("TEST IS OK ")
-        self.assertEqual(response.status_code, 200)
+    def test_search_view_good(self):
+        response = self.client.get(reverse('catalogue:search'), {'query': 'Product1'})
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'catalogue/search.html')
 
+    def test_search_view_bad(self):
+        response = self.client.get(reverse('catalogue:search'), {'query': 'Badname'})
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(redirect('index.html'))
+
+    def test_detail_view(self):
+        product_id = self.product1.id
+        response = self.client.get(reverse('catalogue:detail', args=[product_id]))
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'catalogue/detail.html')

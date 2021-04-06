@@ -12,13 +12,9 @@ class Product(models.Model):
     url = models.URLField(null=True)
 
     class Meta:
-        verbose_name = "Product"
         ordering = ['nutriscore_grade']
 
 
 class Sub_saved(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     sub = models.ForeignKey(Product, on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name = "Sub_saved"
