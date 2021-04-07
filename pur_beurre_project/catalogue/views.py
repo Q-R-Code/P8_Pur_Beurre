@@ -55,7 +55,6 @@ def search(request):
 def detail(request, product_id):
     product = Product.objects.get(id=product_id)
     categories = product.categories
-    categories = ast.literal_eval(categories)
     order = Product.objects.filter(categories__icontains=categories)
     sub = order.order_by('nutriscore_grade', 'id')
     substitutes = []
