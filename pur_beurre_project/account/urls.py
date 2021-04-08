@@ -1,3 +1,6 @@
+"""
+Generate URLS for the app account. The register, the login / logout
+"""
 from django.conf.urls import url
 from django.urls import include
 

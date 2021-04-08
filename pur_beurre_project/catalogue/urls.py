@@ -10,6 +10,6 @@ urlpatterns = [
     url(r'mentions-legales/', views.legal_notice, name='legal-notice'),
     url(r'^search/$', views.search, name='search'),
     url(r'^(?P<product_id>[0-9]+)/$', views.detail, name='detail'),
-    url(r'save/<int:sub.id>', views.save_in_db, name='save'),
-    url(r'supprimer/$', views.delete_sub, name="delete"),
+    url(r'^save/(?P<sub_id>[0-9]+)/$', views.save_in_db, name='save'),
+    url(r'^supprimer/(?P<sub_id>[0-9]+)/$', views.delete_sub, name="delete"),
 ]

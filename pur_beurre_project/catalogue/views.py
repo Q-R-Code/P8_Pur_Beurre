@@ -55,6 +55,7 @@ def search(request):
 def detail(request, product_id):
     product = Product.objects.get(id=product_id)
     categories = product.categories
+    categories = ast.literal_eval(categories)
     order = Product.objects.filter(categories__icontains=categories)
     sub = order.order_by('nutriscore_grade', 'id')
     substitutes = []
@@ -74,15 +75,14 @@ def detail(request, product_id):
 
 
 @login_required
-def save_in_db(request):
+def save_in_db(request, sub_id):
     if request.method == "POST":
-        sub = request.POST.get('substitutes')
         user = request.user
         save = Sub_saved.objects.filter(user_id=user.id,
-                                        sub_id=sub)
+                                        sub_id=sub_id)
         if not save:
             Sub_saved.objects.create(user_id=user.id,
-                                     sub_id=sub)
+                                     sub_id=sub_id)
             messages.success(request, 'Produit sauvegardé')
             return redirect('home')
         else:
@@ -94,12 +94,11 @@ def save_in_db(request):
 
 
 @login_required
-def delete_sub(request):
+def delete_sub(request, sub_id):
     if request.method == "POST":
         user = request.user
-        sub = request.POST.get('substitutes')
         delete = Sub_saved.objects.filter(user_id=user.id,
-                                          sub_id=sub)
+                                          sub_id=sub_id)
         delete.delete()
         sub_save = Sub_saved.objects.filter(user_id=user.id)
         substitutes = []
