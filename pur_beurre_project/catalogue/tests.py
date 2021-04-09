@@ -19,6 +19,7 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'catalogue/legal-notice.html')
 
+    # Test my page et my product  et essayer de retrouver le 404 si pas co
 
 class TestProducts(TestCase):
 
