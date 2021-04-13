@@ -20,6 +20,12 @@
     <h3 class="text-uppercase  text-center font-weight-bold my-5">Voici des substituts pour ce produit:</h3>
     <hr class="divider "/>
 </div>
+{% if user.is_authenticated == False %}
+<div class="container">
+    <a href="{% url 'account:login' %}"><h4 class="mx-auto text-center" >Pour pouvoir sauvegarder un substitut vous devez être connecté.</h4></a>
+    <hr class="divider "/>
+</div>
+{% endif %}
 <div class="container">
     <div class="row mt-5">
 {% for substitute in page %}
