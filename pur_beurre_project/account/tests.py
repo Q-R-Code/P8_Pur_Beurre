@@ -8,7 +8,7 @@ from selenium import webdriver
 
 
 class TestAccountViews(TestCase):
-    """Test some views"""
+    """Test some views for account app"""
 
     def setUp(self):
         User.objects.create(username="user1", email="user1@user1.com", password="azerty").save()
@@ -33,6 +33,8 @@ class Test_functionnal_App_Account(StaticLiveServerTestCase):
         User.objects.create(username="user1", email="user1@user1.com", password="azerty").save()
 
     def test_register_then_connection_form_button(self):
+        """test the path of a user from the creation of an account to the connection """
+
         self.driver.get(str(self.live_server_url) + '/compte/inscription/')
         username_input = self.driver.find_element_by_id('id_username')
         email_input = self.driver.find_element_by_id('id_email')

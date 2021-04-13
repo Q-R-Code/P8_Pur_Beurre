@@ -1,3 +1,8 @@
+"""
+The different models for the application.
+One for the products and one for the registration of a substitute with the id of a product and the id of a user.
+
+"""
 from django.db import models
 from django.contrib.auth.models import User
 

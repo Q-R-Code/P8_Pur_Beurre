@@ -1,3 +1,7 @@
+"""
+The different urls we need for the application catalogue.
+"""
+
 from django.conf.urls import url
 
 from . import views

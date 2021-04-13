@@ -3,6 +3,7 @@ from .forms import RegisterForm
 
 
 def register(request):
+    """function for request recovery and verification """
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():

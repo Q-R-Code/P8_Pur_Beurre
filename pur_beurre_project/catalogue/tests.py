@@ -25,9 +25,10 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'catalogue/legal-notice.html')
 
 
-
 class TestProducts(TestCase):
-
+    """
+    Test a few views and test searching, saving and deleting.
+    """
     def setUp(self):
         Product.objects.create(
             name="Produit1",
@@ -90,8 +91,10 @@ class TestProducts(TestCase):
         new_sub = Sub_saved.objects.count()
         self.assertEquals(new_sub, old_sub - 1)
 
+
 class Test_Functionnal_App_Catalogue(StaticLiveServerTestCase):
     """Test search , save form submission"""
+
     def setUp(self):
         self.driver = webdriver.Firefox()
         Product.objects.create(
@@ -120,9 +123,11 @@ class Test_Functionnal_App_Catalogue(StaticLiveServerTestCase):
         self.product1 = Product.objects.get(name="Produit1")
         self.product2 = Product.objects.get(name="Produit2")
 
-
     def test_search_and_save_sub_button(self):
-        force_login(self.user1,self.driver, self.live_server_url)
+        """Force login , search a product, search a sub and save it.
+        Then display the "my products" page to verify the presence of this one
+        """
+        force_login(self.user1, self.driver, self.live_server_url)
         self.driver.get(str(self.live_server_url) + '/search/?query=Produit1')
         search_button = self.driver.find_element_by_id('search-Produit1')
         search_button.click()
