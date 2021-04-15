@@ -1,1 +1,1 @@
-web: gunicorn pur_beurre_project/pur_beurre_project_app.wsgi
+web: gunicorn --pythonpath pur_beurre_project pur_beurre_project_app.wsgi
