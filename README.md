@@ -11,17 +11,17 @@ salé".
 
 ## Installation & lancement ##
 
-Télécharger et décompresser le repository puis créer un VENV. Installez ensuite le requirements.txt
+Télécharger et décompresser le repository puis créer un VENV. Installer ensuite le requirements.
 
     pip install -r requirements.txt
 
-Pour paramétrer la base de données il faut modifier les réglages dans Pur_beurre_project-app settings.py > DATABASE.
+Pour paramétrer la base de données il faut modifier les réglages dans Pur_beurre_project_app settings.py > DATABASE.
 
 Pour peupler la base de données "Product" :
 
     python manage.py fill_db
 
-La BDD sera peuplé de 200 produits grace à un appel API OpenFoodFacts. Vous pouvez modifier ça dans catalogue >
+La BDD sera peuplée de 200 produits grace à un appel API OpenFoodFacts. Vous pouvez modifier ça dans catalogue >
 management > commands > fill_db.py
 
 Pour démarrer l'application :
@@ -40,7 +40,7 @@ Gère la partie : inscription, connexion et déconnexion du site grace au systè
 ### Catalogue : ###
 
 Cette application s'occupe de toutes les autres fonctionnalités du site. La génération des différentes vues ( index,
-mention légales, mes produits, mon compte ...)
+mentions légales, mes produits, mon compte ...)
 
 Et des actions comme :
 
@@ -63,7 +63,7 @@ Un test fonctionnel pour le parcours d'un utilisateur de la création de compte 
 
 ### Catalogue ###
 
-Des tests unitaires pour les vues : index, mention légales, search.
+Des tests unitaires pour les vues : index, mentions légales, search.
 
 Trois tests d'integrations : La recherche d'un produit en particulier, la sauvegarde d'un substitut et la suppression d'
 un substitut sauvegardé par un utilisateur.
@@ -75,10 +75,10 @@ Utilisateur connecté grace à force_login.
 - Lancement d'une recherche
 - Recherche de substitut sur ce produit
 - Sauvegarde d'un substitut
-- Affichage de la "mes produits".
+- Affichage de la page "mes produits".
 
 --------------------------------------------
 
 ## Version : ##
 
-- 1.0 : Premiere version stable de l'application. En ligne sur : 
+- 1.0 : Premiere version stable de l'application. En ligne sur : https://purbeurre-denicheur.herokuapp.com/
