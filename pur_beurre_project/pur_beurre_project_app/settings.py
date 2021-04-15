@@ -30,8 +30,8 @@ if os.environ.get('ENV') == 'PRODUCTION':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['purbeurre-denicheur.herokuapp.com']
-
+#ALLOWED_HOSTS = ['purbeurre-denicheur.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
@@ -132,10 +132,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (str(BASE_DIR.joinpath('pur_beurre_project_app/static')),)
 
-STATIC_ROOT = (str(BASE_DIR.joinpath('staticfiles')),)
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+#STATICFILES_DIRS = (str(BASE_DIR.joinpath('pur_beurre_project_app/static')),)
+
+#STATIC_ROOT = (str(BASE_DIR.joinpath('staticfiles')),)
+#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 
@@ -145,5 +146,5 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
 

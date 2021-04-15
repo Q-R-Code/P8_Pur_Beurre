@@ -5,6 +5,9 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="disquaire_project.disquaire_project.urls.store" />
+          <option value="pur_beurre_project.catalogue.models.Product.*" />
+          <option value="pur_beurre_project.catalogue.models.Sub_saved.*" />
+          <option value="pur_beurre_project.pur_beurre_project_app.urls.catalogue" />
         </list>
       </option>
     </inspection_tool>
